@@ -35,6 +35,8 @@ int main()
 	HANDLE	hThread;
 	DWORD	IDThread;
 
+	//int
+
 	int n = 0;
 	int t = 0;
 
