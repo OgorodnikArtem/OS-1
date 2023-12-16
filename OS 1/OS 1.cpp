@@ -17,14 +17,14 @@ public:
 
 
 DWORD WINAPI Worker(LPVOID n)
-//unsigned __stdcall Worker(void* n)
+
 {
 	int count = 0;
 	for (int i = 0; i < ((Object*)n)->n; i++) {
 		if(((Object*)n)->a[i] % 2 == 1) {
 			count++;
 		}
-		Sleep(2 * 1000);
+		Sleep(((Object*)n)->t * 1000);
 	}
 	((Object*)n)->r = count;
 	return 0;
@@ -64,14 +64,10 @@ int main()
 
 	SuspendThread(hThread);
 	ResumeThread(hThread);
-	if (WaitForSingleObject(hThread, 1) != WAIT_OBJECT_0)
-	{
-		cout << " Wait for single object failed." << endl;
-	}
-	else
-	{
+	WaitForSingleObject(hThread, INFINITE);
+	
 		cout << " Result = " << A->r << '\n';
-	}
+	
 
 	//WaitForSingleObject(hThread, INFINITE);
 
